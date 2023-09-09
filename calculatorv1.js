@@ -12,6 +12,7 @@ let result = '';
 let change = -1;
 let results = [];
 
+
 console.log(count);
 console.log(numbers);
 
