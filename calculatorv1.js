@@ -12,16 +12,7 @@ let result = '';
 let change = -1;
 let results = [];
 
-//proj euler 5% diff
-let i = 0;
-let count = 0;
-let numbers = [];
-for (i; i < 1000; i++) {
-    if (i % 3 == 0 || i % 5 == 0) {
-        numbers[numbers.length + 1] += i;
-        count += i;
-    }
-}
+
 console.log(count);
 console.log(numbers);
 
