@@ -1,4 +1,5 @@
-const clear = document.querySelectorAll('#clear');
+const clear = document.querySelector('#clear');
+const ce = document.querySelector('#ce');
 const number = document.querySelectorAll('#number');
 const operator = document.querySelectorAll('#operator');
 const mathSign = document.querySelector('#mathSign');
@@ -11,10 +12,6 @@ const oneByX = document.querySelector('.oneByX');
 let result = '';
 let change = -1;
 let results = [];
-
-
-console.log(count);
-console.log(numbers);
 
 
 function inputScreen() {
@@ -40,6 +37,7 @@ function inputScreen() {
 
         if (change === 0) {
             firstInput.innerHTML += this.textContent;
+            //console.log(`FIRSTINPUT.TEXTCONTENT: ${typeof firstInput.textContent}`);
             console.log(firstInput.innerHTML.length);
         } else if (change === 1) {
             firstInput.innerHTML = '';
@@ -57,7 +55,18 @@ function inputScreen() {
         change = 0;
         console.log(`inputScreen 1st elseif change: ${change}`);
 
-    } 
+    }
+
+    if (firstInput.innerHTML == 0) {
+        ce.disabled = true;
+        console.log(`IF: ${ce.disabled}`);
+    } else if (parseInt(firstInput.textContent) != NaN) {
+        ce.disabled = false;
+        console.log(`ELSE IF: ${ce.disabled}`);
+    } else {
+        ce.disabled = true;
+        console.log(`ELSE: ${ce.disabled}`);   
+    }
     
     /* else if (change > 0){
         secondInput.innerHTML = '';
@@ -165,6 +174,10 @@ function showResult() {
     
 }
 
+function clearFirst () {
+    firstInput.innerHTML = '';
+}
+
 function clearScreen() {
     results = [];
     result = '';
@@ -196,7 +209,9 @@ eq.addEventListener('click', showResult);
 
 oneByX.addEventListener('click', showResult);
 
-clear.forEach((button) => button.addEventListener('click', clearScreen));
+ce.addEventListener('click', clearFirst);
+
+clear.addEventListener('click', clearScreen);
 
 number.forEach((button) => {
     button.addEventListener('click', inputScreen)
