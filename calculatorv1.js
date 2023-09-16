@@ -2,6 +2,7 @@ const clear = document.querySelector('#clear');
 const ce = document.querySelector('#ce');
 const number = document.querySelectorAll('#number');
 const operator = document.querySelectorAll('#operator');
+const dot = document.querySelector('#dot');
 const mathSign = document.querySelector('#mathSign');
 const back = document.querySelector('#back');
 const eq = document.querySelector('#eq');
@@ -12,6 +13,8 @@ const oneByX = document.querySelector('.oneByX');
 let result = '';
 let change = -1;
 let results = [];
+
+let helloPhrase = 'Hello';
 
 
 function inputScreen() {
@@ -193,11 +196,28 @@ function backSpace() {
     firstInput.innerHTML = firstInput.textContent.slice(0, -1);
 }
 
+function addDot() {
+    //parseFloat(firstInput.innerHTML);
+    if ((secondInput.innerHTML == '' || firstInput.innerHTML == helloPhrase || firstInput.innerHTML == '') && (change != 0)) {
+        if (secondInput.innerHTML == helloPhrase) {
+            firstInput.innerHTML = '';
+            secondInput.innerHTML = '';
+            mathSign.innerHTML = '';
+        }
+        firstInput.innerHTML += '0.';
+        change = 0;
+    }
+    else if (firstInput.innerHTML.indexOf(".") == -1) {
+        firstInput.innerHTML += '.';
+    }
+
+}
+
 //eventListener
 
 operator.forEach((button) => button.addEventListener('click', operate));
 
-
+dot.addEventListener('click', addDot);
 
 /* operator.addEventListener('click', (button) => {
     if (button.target.id.contains('operator') && button.target.textContent !== '1/x') {
