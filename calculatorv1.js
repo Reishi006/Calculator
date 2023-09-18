@@ -2,6 +2,7 @@ const clear = document.querySelector('#clear');
 const ce = document.querySelector('#ce');
 const number = document.querySelectorAll('#number');
 const operator = document.querySelectorAll('#operator');
+const negpos = document.querySelector('#negpos');
 const dot = document.querySelector('#dot');
 const mathSign = document.querySelector('#mathSign');
 const back = document.querySelector('#back');
@@ -196,6 +197,16 @@ function backSpace() {
     firstInput.innerHTML = firstInput.textContent.slice(0, -1);
 }
 
+function negPos() {
+    if (firstInput.innerHTML != helloPhrase) {
+        if (firstInput.innerHTML.indexOf('-') == -1) {
+            firstInput.innerHTML = '-' + firstInput.innerHTML;
+        } else if (firstInput.innerHTML.indexOf('-') != -1) {
+            firstInput.innerHTML = firstInput.textContent.slice(1);
+        }
+    }
+}
+
 function addDot() {
     //parseFloat(firstInput.innerHTML);
     if ((secondInput.innerHTML == '' || firstInput.innerHTML == helloPhrase || firstInput.innerHTML == '') && (change != 0)) {
@@ -216,6 +227,8 @@ function addDot() {
 //eventListener
 
 operator.forEach((button) => button.addEventListener('click', operate));
+
+negpos.addEventListener('click', negPos);
 
 dot.addEventListener('click', addDot);
 
