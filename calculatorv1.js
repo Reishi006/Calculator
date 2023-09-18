@@ -165,7 +165,7 @@ function showResult() {
             break;
     }
 
-    results[results.length] = [parseFloat(result.toFixed(16))];
+    results[results.length] = [parseFloat(result.toFixed(15))];
     console.log(`Results: ${results}`);
     firstInput.innerHTML = results[results.length - 1];
     secondInput.innerHTML = '';
