@@ -35,14 +35,25 @@ function inputScreen() {
 
     } else  */
 
+
+    /*
+    
+    -> the change variable decides whether the number on site load has been clicked
+    if change == -1 (onload) then it clears every .innerHTML
+    if change == 0 then it doesn't clear any input
+    if change == 1 then it clears only the active input which is always firstInput that dynamically changes throughout calculations
+    
+    */
+
     if (firstInput.innerHTML.length < 20 
         && firstInput.innerHTML.length >= 0 
         && (change === 0 || change === 1)) {
 
-        if (change === 0) {
+        if (change === 0 && firstInput.innerHTML != '0') {
             firstInput.innerHTML += this.textContent;
             //console.log(`FIRSTINPUT.TEXTCONTENT: ${typeof firstInput.textContent}`);
             console.log(firstInput.innerHTML.length);
+            console.log(`indexOf${firstInput.innerHTML.indexOf('0')}`);
         } else if (change === 1) {
             firstInput.innerHTML = '';
             firstInput.innerHTML += this.textContent;
@@ -198,7 +209,7 @@ function backSpace() {
 }
 
 function negPos() {
-    if (firstInput.innerHTML != helloPhrase) {
+    if (firstInput.innerHTML != helloPhrase && (firstInput.innerHTML.indexOf('0') != 0 || firstInput.innerHTML.indexOf('-0') != 0)) {
         if (firstInput.innerHTML.indexOf('-') == -1) {
             firstInput.innerHTML = '-' + firstInput.innerHTML;
         } else if (firstInput.innerHTML.indexOf('-') != -1) {
