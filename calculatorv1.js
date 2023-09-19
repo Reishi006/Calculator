@@ -48,8 +48,10 @@ function inputScreen() {
     if (firstInput.innerHTML.length < 20 
         && firstInput.innerHTML.length >= 0 
         && (change === 0 || change === 1)) {
-
-        if (change === 0 && firstInput.innerHTML != '0') {
+        if (change === 0) {
+            if (firstInput.innerHTML.match(/(?<!\d)0$/) == '0') {   // /(?<!\d)0$/ 0 followed by a character that is not a digit
+                firstInput.innerHTML = '';
+            }
             firstInput.innerHTML += this.textContent;
             //console.log(`FIRSTINPUT.TEXTCONTENT: ${typeof firstInput.textContent}`);
             console.log(firstInput.innerHTML.length);
@@ -140,7 +142,7 @@ function showResult() {
                 }
                 funcActive = false;
             }
-        } //DO NAPRAWY/WYWALENIA
+        } //^ TO BE FIXED/REMOVED
         return;
     };
     
@@ -177,7 +179,7 @@ function showResult() {
             break;
     }
 
-    results[results.length] = [parseFloat(result.toFixed(15))];
+    results[results.length] = [parseFloat(result.toFixed(14))];
     console.log(`Results: ${results}`);
     firstInput.innerHTML = results[results.length - 1];
     secondInput.innerHTML = '';
@@ -209,8 +211,8 @@ function backSpace() {
 }
 
 function negPos() {
-    if (firstInput.innerHTML != helloPhrase && (firstInput.innerHTML.indexOf('0') != 0 || firstInput.innerHTML.indexOf('-0') != 0)) {
-        if (firstInput.innerHTML.indexOf('-') == -1) {
+    if (firstInput.innerHTML != helloPhrase || firstInput.innerHTML.indexOf('0') != 0 || firstInput.innerHTML.indexOf('-0') != 0) {
+        if (firstInput.innerHTML.indexOf('-') == -1 && firstInput.innerHTML.match(/(?<!\d)0(?=\d|$)/) != 0) {
             firstInput.innerHTML = '-' + firstInput.innerHTML;
         } else if (firstInput.innerHTML.indexOf('-') != -1) {
             firstInput.innerHTML = firstInput.textContent.slice(1);
@@ -226,8 +228,11 @@ function addDot() {
             secondInput.innerHTML = '';
             mathSign.innerHTML = '';
         }
-        firstInput.innerHTML += '0.';
-        change = 0;
+        if (firstInput.innerHTML.match(/!0|\d+$/) == null) {
+            console.log(`${firstInput.innerHTML.match(/!0|\d+$/)}`);
+            firstInput.innerHTML += '0.';
+            change = 0;
+        }
     }
     else if (firstInput.innerHTML.indexOf(".") == -1) {
         firstInput.innerHTML += '.';
@@ -262,3 +267,8 @@ number.forEach((button) => {
 }); //displayNumbers
 
 back.addEventListener('click', backSpace);
+
+
+
+/* let str = "-01041240";
+console.log(`${str.match(/(?<!\d)0/)}`); //matches 0 only if it isn't preceeded by a digit*/
