@@ -17,6 +17,7 @@ let results = [];
 
 let helloPhrase = 'Hello';
 
+let activate = 0;
 
 function inputScreen() {
     /*
@@ -84,39 +85,37 @@ function operate() {
 
 function showResult() {
     
-    if ((firstInput.innerHTML === '' || secondInput.innerHTML === '') && mathSign.innerHTML !== '1/x') {
-        /* firstInput.innerHTML = '';
-        secondInput.innerHTML = '';
-        mathSign.innerHTML = ''; */
+    if ((firstInput.innerHTML === '' || helloPhrase || secondInput.innerHTML === '') && mathSign.innerHTML !== '1/x') {
         let id = null;
         let iterate = 0;
-        var funcActive = false;
 
-        clearInterval(id);
-        id = setInterval(blink, 200);
+        if (activate == 0) {
+            activate = 1;
+            clearInterval(id);
+            id = setInterval(blink, 150);
 
-        function blink() {
-            if (funcActive == true) {
-                return;
-            } else {
-                funcActive = true;
-                if (iterate == 4) {
+            console.log(`id: ${id}`);
+
+            function blink() {
+                if (iterate == 6) {
                     clearInterval(id);
+                    activate = 0;
                 } else {
-                    iterate++;
-                    if (iterate % 2 == 1) {
-                        firstInput.style.visibility = 'hidden';
-                        secondInput.style.visibility = 'hidden';
-                        mathSign.style.visibility = 'hidden';
-                    } else {
-                        firstInput.style.visibility = 'visible';
-                        secondInput.style.visibility = 'visible';
-                        mathSign.style.visibility = 'visible';
+                    if (id) {
+                            iterate++;
+                        if (iterate % 2 == 1) {
+                            firstInput.style.visibility = 'hidden';
+                            secondInput.style.visibility = 'hidden';
+                            mathSign.style.visibility = 'hidden';
+                        } else {
+                            firstInput.style.visibility = 'visible';
+                            secondInput.style.visibility = 'visible';
+                            mathSign.style.visibility = 'visible';
+                        }
                     }
                 }
-                funcActive = false;
             }
-        } //^ TO BE FIXED/REMOVED
+        }
         return;
     };
     
