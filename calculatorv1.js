@@ -85,7 +85,7 @@ function operate() {
 
 function showResult() {
     
-    if ((firstInput.innerHTML === '' || helloPhrase || secondInput.innerHTML === '') && mathSign.innerHTML !== '1/x') {
+    if ((firstInput.innerHTML === '' || firstInput.innerHTML === helloPhrase || secondInput.innerHTML === '') && mathSign.innerHTML !== '1/x') {
         let id = null;
         let iterate = 0;
 
