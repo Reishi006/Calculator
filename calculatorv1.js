@@ -11,9 +11,9 @@ const firstInput = document.querySelector('#firstInput');
 const secondInput = document.querySelector('#secondInput');
 const oneByX = document.querySelector('.oneByX');
 
-let result = '';
+let currentResult = '';
 let change = -1;
-let results = [];
+let allResults = [];
 
 let helloPhrase = 'Hello';
 
@@ -122,55 +122,55 @@ function showResult() {
     let x = Number(firstInput.innerHTML);
     let y = Number(secondInput.innerHTML);
 
-    let mathop = mathSign.innerHTML;
+    let mathOperator = mathSign.innerHTML;
     
 
-    switch (mathop) {
+    switch (mathOperator) {
         case '+':
-            result = x + y;
+            currentResult = x + y;
             break;
         case '-':
-            result = y - x;
+            currentResult = y - x;
             break;
         case '*':
-            result = x * y;
+            currentResult = x * y;
             break;
         case ':':
-            result = y / x;
+            currentResult = y / x;
             break;
         case '1/x':
-            result = 1 / y;
+            currentResult = 1 / y;
             break;
         case 'x^y':
-            result = y ** x;
+            currentResult = y ** x;
             break;
         case '√':
-            result = Math.pow(y, 1/x);
+            currentResult = Math.pow(y, 1/x);
             break;
         case '%':
-            result = y % x;
+            currentResult = y % x;
             break;
     }
 
-    results[results.length] = [parseFloat(result.toFixed(14))];
-    console.log(`Results: ${results}`);
-    firstInput.innerHTML = results[results.length - 1];
+    allResults[allResults.length] = [parseFloat(currentResult.toFixed(14))];
+    console.log(`allResults: ${allResults}`);
+    firstInput.innerHTML = allResults[allResults.length - 1];
     secondInput.innerHTML = '';
     mathSign.innerHTML = '';
     change = 1;
-    console.log(`result change: ${change}`);
+    console.log(`currentResult change: ${change}`);
     console.log(`1/x: ${mathSign.innerHTML}`);
 
     
 }
 
-function clearFirst () {
+function clearFirst() {
     firstInput.innerHTML = '';
 }
 
 function clearScreen() {
-    results = [];
-    result = '';
+    allResults = [];
+    currentResult = '';
     firstInput.innerHTML = '';
     secondInput.innerHTML = '';
     mathSign.innerHTML = '';
