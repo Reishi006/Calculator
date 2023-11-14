@@ -33,7 +33,7 @@ function inputScreen() {
         && firstInput.innerHTML.length >= 0 
         && (change === 0 || change === 1)) {
         if (change === 0) {
-            if (firstInput.innerHTML.match(/(?<!\d)0$/) == '0') {   // /(?<!\d)0$/ 0 followed by a character that is not a digit
+            if (firstInput.innerHTML.match(/(?<!\d)0$/) == '0') {   // /(?<!\d)0$/ ---> zero followed by a character that is not a digit
                 firstInput.innerHTML = '';
             }
             firstInput.innerHTML += this.textContent;
@@ -230,10 +230,6 @@ clear.addEventListener('click', clearScreen);
 
 number.forEach((button) => {
     button.addEventListener('click', inputScreen)
-}); //displayNumbers
+});
 
 back.addEventListener('click', backSpace);
-
-
-/* let str = "-01041240";
-console.log(`${str.match(/(?<!\d)0/)}`); //matches 0 only if it isn't preceeded by a digit*/
